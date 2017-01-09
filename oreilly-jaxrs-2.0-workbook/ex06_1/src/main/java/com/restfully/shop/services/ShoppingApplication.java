@@ -6,18 +6,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ApplicationPath("/services")
-public class ShoppingApplication extends Application
-{
+public class ShoppingApplication extends Application {
    private Set<Object> singletons = new HashSet<Object>();
 
-   public ShoppingApplication()
-   {
+   public ShoppingApplication() {
       singletons.add(new CustomerResource());
    }
 
    @Override
-   public Set<Object> getSingletons()
-   {
+   public Set<Object> getSingletons() {
       return singletons;
    }
 }

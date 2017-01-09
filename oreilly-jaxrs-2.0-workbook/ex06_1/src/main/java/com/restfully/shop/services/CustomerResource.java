@@ -17,19 +17,16 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Path("/customers")
-public class CustomerResource
-{
+public class CustomerResource {
    private Map<Integer, Customer> customerDB = new ConcurrentHashMap<Integer, Customer>();
    private AtomicInteger idCounter = new AtomicInteger();
 
    public CustomerResource()
-   {
-   }
+   {}
 
    @POST
    @Consumes("application/xml")
-   public Response createCustomer(Customer customer)
-   {
+   public Response createCustomer(Customer customer) {
       customer.setId(idCounter.incrementAndGet());
       customerDB.put(customer.getId(), customer);
       System.out.println("Created customer " + customer.getId());
@@ -40,11 +37,9 @@ public class CustomerResource
    @GET
    @Path("{id}")
    @Produces("application/xml")
-   public Customer getCustomer(@PathParam("id") int id)
-   {
+   public Customer getCustomer(@PathParam("id") int id) {
       Customer customer = customerDB.get(id);
-      if (customer == null)
-      {
+      if (customer == null) {
          throw new WebApplicationException(Response.Status.NOT_FOUND);
       }
       return customer;
@@ -53,10 +48,11 @@ public class CustomerResource
    @PUT
    @Path("{id}")
    @Consumes("application/xml")
-   public void updateCustomer(@PathParam("id") int id, Customer update)
-   {
+   public void updateCustomer(@PathParam("id") int id, Customer update) {
       Customer current = customerDB.get(id);
-      if (current == null) throw new WebApplicationException(Response.Status.NOT_FOUND);
+      if (current == null) {
+         throw new WebApplicationException(Response.Status.NOT_FOUND);
+      }
 
       current.setFirstName(update.getFirstName());
       current.setLastName(update.getLastName());

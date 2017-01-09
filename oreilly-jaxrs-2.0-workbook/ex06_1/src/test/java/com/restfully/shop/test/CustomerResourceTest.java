@@ -15,25 +15,21 @@ import javax.ws.rs.core.Response;
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
-public class CustomerResourceTest
-{
+public class CustomerResourceTest {
    private static Client client;
 
    @BeforeClass
-   public static void initClient()
-   {
+   public static void initClient() {
       client = ClientBuilder.newClient();
    }
 
    @AfterClass
-   public static void closeClient()
-   {
+   public static void closeClient() {
       client.close();
    }
 
    @Test
-   public void testCustomerResource() throws Exception
-   {
+   public void testCustomerResource() throws Exception {
       System.out.println("*** Create a new Customer ***");
       Customer newCustomer = new Customer();
       newCustomer.setFirstName("Bill");
